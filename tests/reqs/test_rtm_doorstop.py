@@ -1,7 +1,7 @@
 """Provide functional tests for rtm_doorstop."""
 import rtm_doorstop as rtm
 import re
-import os
+from os import system
 import csv
 
 
@@ -27,7 +27,7 @@ def test_multiple_tests():
 
 def test_cli(capfd):
     """Confirm that the program can be run from the CLI."""
-    returnval = os.system("python rtm_doorstop.py REQ")
+    returnval = system("python rtm_doorstop.py REQ")
     out, err = capfd.readouterr()
     assert returnval == 0
     assert "UID" in out
