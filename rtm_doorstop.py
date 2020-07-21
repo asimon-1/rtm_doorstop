@@ -5,13 +5,13 @@ import csv
 import fire
 
 
-def rtm_builder(prefix, sort=True, csv_path=None):
+def rtm_builder(prefix: str, sort_key: str = None, csv_path: str = None) -> str:
     """Generate a traceability matrix, and output to either stdout or csv.
 
     Args:
         prefix: The prefix for Doorstop requirements.
-        sort (bool, optional): Specifies if the RTM should be sorted. Defaults to True.
-        csv_path ([type], optional): Path to write to file, if desired. Defaults to None.
+        sort_key: If the RTM should be sorted, sort by this key. Should be one of 'UID', 'Has Test', 'Tests', or None. Defaults to None.
+        csv_path: If the RTM should be written to file, write to this path. If omitted, the RTM will be returned. Defaults to None.
     """
     tree = doorstop.build()
     reqs_doc = tree.find_document(prefix)
@@ -23,9 +23,12 @@ def rtm_builder(prefix, sort=True, csv_path=None):
         }
         for item in reqs_doc.items
     ]
-    if sort:
-        table_data = sorted(table_data, key=lambda x: x["UID"])
+
+    if sort_key:
+        table_data = sorted(table_data, key=lambda x: x[sort_key])
+
     table = rapidtables.make_table(table_data, tablefmt="md")
+
     if csv_path:
         with open(csv_path, "w", newline="") as csvfile:
             fieldnames = ["UID", "Has Test", "Tests"]
@@ -33,8 +36,9 @@ def rtm_builder(prefix, sort=True, csv_path=None):
             writer.writeheader()
             for row in table_data:
                 writer.writerow(row)
+        return f"Successfully wrote traceability matrix to {csv_path}"
     else:
-        print(table)
+        return table
 
 
 def main():
