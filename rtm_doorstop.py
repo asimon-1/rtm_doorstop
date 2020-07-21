@@ -5,15 +5,20 @@ import csv
 import fire
 
 
-def rtm_builder(prefix: str, sort_key: str = None, csv_path: str = None) -> str:
+def rtm_builder(
+    prefix: str, root: str = None, sort_key: str = None, csv_path: str = None
+) -> str:
     """Generate a traceability matrix, and output to either stdout or csv.
 
     Args:
         prefix: The prefix for Doorstop requirements.
-        sort_key: If the RTM should be sorted, sort by this key. Should be one of 'UID', 'Has Test', 'Tests', or None. Defaults to None.
-        csv_path: If the RTM should be written to file, write to this path. If omitted, the RTM will be returned. Defaults to None.
+        root: The root path to search for Doorstop documents.
+        sort_key: If the RTM should be sorted, sort by this key.
+            Should be one of 'UID', 'Has Test', 'Tests', or None. Defaults to None.
+        csv_path: If the RTM should be written to file, write to this path.
+            If omitted, the RTM will be returned. Defaults to None.
     """
-    tree = doorstop.build()
+    tree = doorstop.build(root=root)
     reqs_doc = tree.find_document(prefix)
     table_data = [
         {
