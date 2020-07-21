@@ -1,4 +1,4 @@
-    """Provide functional tests for rtm_doorstop."""
+"""Provide functional tests for rtm_doorstop."""
 import rtm_doorstop as rtm
 import re
 import os
