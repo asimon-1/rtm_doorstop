@@ -34,6 +34,7 @@ def test_cli(capfd):
 
 
 def test_csv_writer(tmpdir):
+    """Confirm that the results are written to CSV."""
     path = tmpdir.join("outfile.csv")
 
     returnval = rtm.rtm_builder("REQ", csv_path=path)
