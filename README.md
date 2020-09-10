@@ -27,18 +27,18 @@ The `rtm_doorstop` tool can be used to quickly build an Requirements Traceabilit
 This tool can generate RTMs that are in Markdown-compliant format, or write to a CSV file.
 
 ```Markdown
-| UID     | Has Test | Tests                   |
-|---------|----------|-------------------------|
-| REQ0001 |     True | TST0001                 |
-| REQ0002 |    False |                         |
-| REQ0003 |     True | TST0003 TST0004 TST0005 |
+| UID     | Has Test | Need Test | Tests                   |
+|---------|----------|-----------|-------------------------|
+| REQ0001 |     True |      True | TST0001                 |
+| REQ0002 |    False |     False |                         |
+| REQ0003 |     True |      True | TST0003 TST0004 TST0005 |
 ```
 
 ```csv
-UID,Has Test,Tests
-REQ0001,True,TST0001
-REQ0002,False,
-REQ0003,True,TST0003 TST0004 TST0005
+UID,Has Test,Need Test,Tests
+REQ0001,True,True,TST0001
+REQ0002,False,False,
+REQ0003,True,True,TST0003 TST0004 TST0005
 ```
 
 --------
@@ -63,7 +63,7 @@ Optional arguments are --root, --sort_key, and --csv_path.
 | ----- | ----- |
 | root | If Doorstop cannot build a valid tree from the current working directory, you can specify the path to the tree root here |
 | sort_key | If the RTM should be sorted, you can specify the key to sort by here. Valid options are 'UID', 'Has Test', or 'Tests' When ommitted, no ordering is guaranteed. |
-| csv_path | The filepath where the tool should save the RTM to. When ommitted, the RTM is printed to console in Markdown format. |
+| csv_path | The filepath where the tool should save the RTM to. When omitted, the RTM is printed to console in Markdown format. |
 
 Tests are assumed to be linked to the requirements as as child links. Doorstop specifies these links in the "links" yaml key. For instance, the following test would be linked to requirement REQ046.
 
