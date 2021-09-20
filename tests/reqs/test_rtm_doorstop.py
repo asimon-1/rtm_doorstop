@@ -44,10 +44,26 @@ def test_csv_writer(tmpdir):
         reader = csv.DictReader(csvfile)
         csvcontents = [row for row in reader]
     assert csvcontents == [
-        {"UID": "REQ0001", "Has Test": "True", "Need Test": "True", "Tests": "TST0001"},
-        {"UID": "REQ0002", "Has Test": "False", "Need Test": "False", "Tests": ""},
+        {
+            "UID": "REQ0001",
+            "Header": "",
+            "Text": "",
+            "Has Test": "True",
+            "Need Test": "True",
+            "Tests": "TST0001",
+        },
+        {
+            "UID": "REQ0002",
+            "Header": "",
+            "Text": "",
+            "Has Test": "False",
+            "Need Test": "False",
+            "Tests": "",
+        },
         {
             "UID": "REQ0003",
+            "Header": "",
+            "Text": "",
             "Has Test": "True",
             "Need Test": "True",
             "Tests": "TST0003 TST0004 TST0005",

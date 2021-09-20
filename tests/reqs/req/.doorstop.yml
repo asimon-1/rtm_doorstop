@@ -1,0 +1,7 @@
+settings:
+  digits: 4
+  prefix: REQ
+  sep: ''
+attributes:
+  defaults:
+    normative: True

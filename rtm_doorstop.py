@@ -23,6 +23,8 @@ def rtm_builder(
     table_data = [
         {
             "UID": str(item),
+            "Header": item.header,
+            "Text": item.text,
             "Has Test": bool(item.child_links),
             "Need Test": bool(item.normative),
             "Tests": " ".join([str(child) for child in item.child_links]),
@@ -37,7 +39,7 @@ def rtm_builder(
 
     if csv_path:
         with open(csv_path, "w", newline="") as csvfile:
-            fieldnames = ["UID", "Has Test", "Need Test", "Tests"]
+            fieldnames = ["UID", "Header", "Text", "Has Test", "Need Test", "Tests"]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             for row in table_data:

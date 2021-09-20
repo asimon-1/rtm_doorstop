@@ -8,7 +8,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="rtm_doorstop",
-    version="1.1.0",
+    version="1.1.1",
     author="Andrew Simon",
     author_email="asimon1@protonmail.com",
     maintainer="Andrew Simon",
@@ -27,10 +27,10 @@ setup(
         "Topic :: Software Development :: Quality Assurance",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     ],
-    entry_points={"console_scripts": ["rtm_doorstop = rtm_doorstop:main"],},
+    entry_points={
+        "console_scripts": ["rtm_doorstop = rtm_doorstop:main"],
+    },
 )
